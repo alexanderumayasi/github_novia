@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi Verónica ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* Partículas de corazones flotantes */
+        .hearts {
+            position: fixed;
+            top: 0;
+            left:  0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            animation: float 6s infinite ease-in-out;
+            opacity: 0;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform:  translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Contenedor principal */
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        /* Carta */
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 60px 50px;
+            box-shadow:  0 30px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: cardEntrance 1s ease-out;
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes cardEntrance {
+            from {
+                opacity: 0;
+                transform:  scale(0.8) rotateX(-20deg);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) rotateX(0deg);
+            }
+        }
+
+        /* Decoración superior con efecto de latido */
+        .decoration-top {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 40px;
+            animation: heartbeat 1. 5s infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 105, 180, 0.6));
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform:  translateX(-50%) scale(1);
+            }
+            10% {
+                transform: translateX(-50%) scale(1.3);
+            }
+            20% {
+                transform: translateX(-50%) scale(1);
+            }
+            30% {
+                transform: translateX(-50%) scale(1.3);
+            }
+            40% {
+                transform: translateX(-50%) scale(1);
+            }
+        }
+
+        /* Título */
+        h1 {
+            text-align: center;
+            color: #c2185b;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow:  2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: titleGlow 3s infinite;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% {
+                text-shadow: 2px 2px 4px rgba(194, 24, 91, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(194, 24, 91, 0.6),
+                             0 0 30px rgba(194, 24, 91, 0.4);
+            }
+        }
+
+        /* Texto de la carta */
+        .letter-content {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #333;
+            text-align: justify;
+            margin-bottom: 30px;
+            animation: fadeIn 2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        . letter-content p {
+            margin-bottom: 20px;
+            text-indent: 30px;
+        }
+
+        /* Firma */
+        .signature {
+            text-align: right;
+            font-size: 1.5em;
+            color: #c2185b;
+            font-style: italic;
+            margin-top: 40px;
+            animation: signatureAppear 3s ease-out;
+        }
+
+        @keyframes signatureAppear {
+            0% {
+                opacity: 0;
+                transform:  translateX(50px);
+            }
+            60% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Decoraciones de flores */
+        .flower {
+            position: absolute;
+            font-size: 30px;
+            animation: rotate 10s infinite linear;
+        }
+
+        . flower-1 { top: 20px; left: 20px; }
+        .flower-2 { top: 20px; right: 20px; animation-direction: reverse; }
+        .flower-3 { bottom: 20px; left: 20px; animation-delay: -5s; }
+        .flower-4 { bottom: 20px; right: 20px; animation-direction: reverse; animation-delay: -5s; }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Estrellas brillantes */
+        . sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: gold;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: sparkleAnim 2s infinite;
+        }
+
+        @keyframes sparkleAnim {
+            0%, 100% {
+                opacity: 0;
+                transform:  scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Botón interactivo */
+        .interactive-btn {
+            display: block;
+            margin: 30px auto 0;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .interactive-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Efecto de confeti */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #f0f;
+            position: absolute;
+            animation: confettiFall 3s linear;
+        }
+
+        @keyframes confettiFall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Corazón del popup mejorado */
+        .popup-heart {
+            font-size: 4em;
+            margin-bottom: 20px;
+            animation: heartbeatBig 1.5s infinite;
+            display: inline-block;
+            filter: drop-shadow(0 0 20px rgba(255, 105, 180, 0.8));
+        }
+
+        @keyframes heartbeatBig {
+            0%, 100% {
+                transform: scale(1);
+            }
+            10% {
+                transform: scale(1.4);
+            }
+            20% {
+                transform: scale(1. 1);
+            }
+            30% {
+                transform: scale(1.4);
+            }
+            40% {
+                transform: scale(1.1);
+            }
+        }
+
+        /* Estetoscopio decorativo */
+        .nurse-icon {
+            display: inline-block;
+            margin:  0 5px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .card {
+                padding: 40px 30px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            .letter-content {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Corazones flotantes -->
+    <div class="hearts" id="hearts"></div>
+
+    <!-- Contenedor principal -->
+    <div class="container">
+        <div class="card">
+            <!-- Decoración superior -->
+            <div class="decoration-top">💕</div>
+
+            <!-- Flores decorativas -->
+            <div class="flower flower-1">🌸</div>
+            <div class="flower flower-2">🌺</div>
+            <div class="flower flower-3">🌼</div>
+            <div class="flower flower-4">🌻</div>
+
+            <!-- Estrellas -->
+            <div class="sparkle" style="top: 15%; left: 10%; animation-delay: 0s;"></div>
+            <div class="sparkle" style="top:  25%; right: 15%; animation-delay: 0.5s;"></div>
+            <div class="sparkle" style="bottom: 20%; left: 20%; animation-delay: 1s;"></div>
+            <div class="sparkle" style="bottom: 30%; right: 10%; animation-delay: 1.5s;"></div>
+
+            <!-- Título -->
+            <h1>Para mi Hermosa Verónica 💖</h1>
+
+            <!-- Contenido de la carta -->
+            <div class="letter-content">
+                <p>
+                    Tienes unos bonitos ojos, una voz tan bonita, tus labios son muy hermosos y tienes el tono perfecto, tu pelo es precioso... 
+                </p>
+                <p>
+                    Tus sentimientos son muy lindos y sinceros, tu personalidad está tan llena de energía y siempre sabes cómo salir adelante, eres muy positiva, me encanta cuando sonríes y tus ojitos se encojen, la admiro mucho ¿sabes? 
+                </p>
+                <p>
+                    Porque a pasado por tantas cosas malas y aún así sigue dándolo todo y no se rinde, esa niña de verdad se merece lo mejor.  Amo lo valiente y fuerte que es mi princesita.  💖💐✨
+                </p>
+                <p style="text-align: center; font-weight: bold; color: #c2185b; font-size: 1.3em; margin-top: 30px;">
+                    Eres la persona más especial en mi vida y cada día me enamoro más de ti. 
+                </p>
+            </div>
+
+            <!-- Firma -->
+            <div class="signature">
+                Con todo mi amor,<br>
+                Alexander 💕
+            </div>
+
+            <!-- Botón interactivo -->
+            <button class="interactive-btn" onclick="mostrarMensaje()">
+                💝 Haz click aquí 💝
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Crear corazones flotantes
+        function createHeart() {
+            const heartsContainer = document.getElementById('hearts');
+            const heart = document. createElement('div');
+            heart. classList.add('heart');
+            heart.innerHTML = ['❤️', '💕', '💖', '💗', '💓', '💝'][Math.floor(Math.random() * 6)];
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            heartsContainer.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 8000);
+        }
+
+        // Generar corazones continuamente
+        setInterval(createHeart, 300);
+
+        // Función del botón interactivo
+        function mostrarMensaje() {
+            // Crear confeti
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.classList. add('confetti');
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti. style.top = '-10px';
+                    confetti.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                    confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                    document.body.appendChild(confetti);
+
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 30);
+            }
+
+            // Mostrar mensaje especial
+            const mensaje = document. createElement('div');
+            mensaje. style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(0);
+                background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+                padding: 40px;
+                border-radius:  20px;
+                box-shadow:  0 20px 60px rgba(0,0,0,0.4);
+                z-index: 1000;
+                text-align: center;
+                color: white;
+                font-size: 1.5em;
+                animation: popIn 0.5s forwards;
+                max-width: 80%;
+            `;
+            mensaje.innerHTML = `
+                <div class="popup-heart">💖</div>
+                <div style="font-weight: bold; margin-bottom: 15px; font-size: 1.2em;">
+                    ¡Eres increíble, Verónica!  
+                    <span class="nurse-icon">🩺</span>
+                </div>
+                <div style="font-size: 0.9em; line-height: 1.6; margin-bottom: 10px;">
+                    Serás la mejor enfermera del mundo. 
+                    <span class="nurse-icon">💉</span><br>
+                    Tu dedicación, tu corazón lleno de amor y tu fuerza 
+                    harán que salves muchas vidas.
+                    <span class="nurse-icon">🏥</span><br>
+                    ¡Estoy tan orgulloso de ti! 
+                    <span class="nurse-icon">⭐</span>
+                </div>
+                <div style="font-size:  0.85em; font-style: italic; margin-top: 15px;">
+                    Sigue brillando, mi futura enfermera estrella ✨👩‍⚕️
+                </div>
+                <button onclick="this.parentElement.remove()" style="
+                    margin-top: 25px;
+                    padding: 12px 35px;
+                    background: white;
+                    color: #f5576c;
+                    border:  none;
+                    border-radius: 25px;
+                    cursor: pointer;
+                    font-weight: bold;
+                    font-size: 0.9em;
+                    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                    transition: all 0.3s ease;
+                " onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                    Cerrar 💕
+                </button>
+            `;
+
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes popIn {
+                    to {
+                        transform: translate(-50%, -50%) scale(1);
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+            document.body.appendChild(mensaje);
+        }
+
+        // Animación inicial de estrellas
+        function createRandomSparkles() {
+            setInterval(() => {
+                const sparkle = document.createElement('div');
+                sparkle.classList.add('sparkle');
+                sparkle. style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = '0s';
+                document.querySelector('.card').appendChild(sparkle);
+
+                setTimeout(() => sparkle.remove(), 2000);
+            }, 3000);
+        }
+
+        createRandomSparkles();
+
+        // Efecto de música de fondo (opcional)
+        console.log('%c💖 Hecho con amor para Verónica 💖', 'color: #f5576c; font-size:  20px; font-weight: bold;');
+    </script>
+</body>
+</html>
